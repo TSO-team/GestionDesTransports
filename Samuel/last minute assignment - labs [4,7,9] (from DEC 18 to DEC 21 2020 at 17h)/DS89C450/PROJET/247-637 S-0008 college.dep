@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>913437919</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\processusBoutonConnecte.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\processusClignotant.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\processusBoutonConnecte.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteUART1.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\serviceBaseDeTemps.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\serviceProtocole637.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\EXE\247-637 S-0008 college.txt</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\serviceProtocole637.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteTimer2AutoReload.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteUART0.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\processusClignotant.lst</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteIOT1.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceT1.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteUART1.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\processusClignotant.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\serviceBaseDeTemps.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\processusBoutonConnecte.c</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteTimer2AutoReload.lst</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteIOB1.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\serviceProtocole637.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceB1.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteTimer1Mode2.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceS0007.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\main.c</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteTimer2AutoReload.c</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\247-637 S-0008 college.pbd</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteUART0.c</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteTimer2AutoReload.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteUART0.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\processusClignotant.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteUART0.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\serviceBaseDeTemps.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteTimer1Mode2.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\serviceProtocole637.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceS0009.r51</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceS0009.c</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\interfaceS0009.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceS0009.pbi</file>
+      <file>$PROJ_DIR$\lnk51ew_DS89C450.xcl</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl-pli-nlxd-1e16x01.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\247-637 S-0008 college.html</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceB1.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\processusBoutonConnecte.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteTimer1Mode2.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\processusClignotant.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\serviceBaseDeTemps.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceB1.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteIOB1.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteIOT1.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteUART0.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteUART1.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\processusBoutonConnecte.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceS0007.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceT1.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\main.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteIOB1.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceT1.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\serviceProtocole637.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\interfaceS0007.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteIOT1.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteTimer1Mode2.pbi</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\piloteTimer2AutoReload.r51</file>
+      <file>$PROJ_DIR$\..\SORTIE\OBJ\main.r51</file>
+      <file>$TOOLKIT_DIR$\inc\ioDS89C450.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteTimer1Mode2.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteUART0.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteUART1.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\processusBoutonConnecte.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteIOB1.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\serviceBaseDeTemps.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteTimer2AutoReload.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\piloteIOT1.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceS0009.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\processusClignotant.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceB1.h</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteTimer1Mode2.s51</file>
+      <file>$PROJ_DIR$\..\SOURCE\main.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\serviceProtocole637.h</file>
+      <file>$PROJ_DIR$\..\SOURCE\interfaceT1.h</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\interfaceB1.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteIOT1.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\interfaceB1.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteIOT1.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\interfaceT1.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteUART1.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteIOB1.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\interfaceS0009.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\serviceBaseDeTemps.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\main.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\main.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteIOB1.lst</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\piloteUART1.s51</file>
+      <file>$PROJ_DIR$\..\SORTIE\LIST\interfaceT1.s51</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\..\SORTIE\EXE\247-637 S-0008 college.txt</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 38 41 34 56 62 47 48 43 61 49 50 51 44 45 57 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\piloteIOT1.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 82 80 48</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 59</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 71</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\interfaceT1.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 92 83 56</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 71 78</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 71 78</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\piloteUART1.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 91 84 50</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 66</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 66</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\processusClignotant.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 29 10 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 65 69 78 73</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\serviceBaseDeTemps.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 31 87 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 70 69</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 70 69</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\processusBoutonConnecte.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 2 42 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 69 74 72 67</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 69 74 72 67</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\piloteIOB1.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 85 90 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 68</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\serviceProtocole637.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 7 33 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 65 66 69 77</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 65 66 69 77</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\interfaceB1.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 79 81 41</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 68 69 74</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 68 69 74</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\piloteTimer1Mode2.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 75 32 43</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 64</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\interfaceS0007.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 88 89 62</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 71 68 70 64 65 66 69 77 74 72 78 67 73</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 71 68 70 64 65 66 69 77 74 72 78 67 73</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\piloteTimer2AutoReload.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 27 17 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 70</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 70</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\piloteUART0.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 28 30 49</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 65</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 65</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 6 40</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\SOURCE\interfaceS0009.c</name>
+      <outputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 36 86 34</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC8051</name>
+          <file> 76 63 65 66 69 77 74 72</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 63 65 66 69 77 74 72</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+
