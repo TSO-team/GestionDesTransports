@@ -1,0 +1,40 @@
+Résumé à propos du pseudo-code
+
+Le cours porte sur les machines à états. Des exemples sont utilisés pour couvrir des principes de bases de même que la marche à suivre pour concevoir des diagrammes d'états et le pseudo-code correspondant. 
+
+Ces exemples permettent de présenter des diagrammes d'états qui montrent des états qui sont représentés par des bulles qui sont associés aux instants où un programme a à attendre après un évènement (ex. temps écoulé ou activation d'un bouton). De plus, les passages d'un état à un autre y sont représentés par des flèches et les conditions qui mènent à ces passages sont inscrites le long de ces flèches. Enfin, la priorité à accorder aux conditions peut accompagner les conditions si nécessaire.
+
+Le conversion des diagrammes d'états en pseudo-code est couverte à l'aide d'un langage minimaliste:
+
+    Noms des états: la description d'un état débute par le nom de cet état;
+    Tests pour déterminer s'il faut commander un passage à un autre état: la réalisation d'un test s'exprime à l'aide opérateurs logiques (ex. <, >, =, !=, >=, <=, etc...)
+    Commandes de passage à un autre état: le passage à un autre état se décrit en inscrivant le nom cet autre état;
+    Commandes pour rester dans le même état: le programme demeure dans le même état s'il n'y a pas de commande de passage à un autre état;
+    Séparation des tâches possibles à réaliser: la présence d'un point-virgule (i.e. ";") à la fin d'une instruction indique la fin du bloc d'instructions auquel cette instruction fait partie; 
+    Pseudo-code à prendre en compte lorsqu'un test est positif: toutes les instructions qui se trouvent entre l'instruction qui décrit le test et le premier point-virgule (i.e. ";") qui suit cette instruction ou la fin de la description de l'état s'il n'y a pas de point-virgule avant cette fin de description;
+    Pseudo-code à prendre en compte lorsqu'un test est négatif: toutes les instructions qui se trouvent après le premier point virgule qui suit l'instruction qui suit le test s'il y en a;
+    Tâche à réaliser: une tâche à réaliser se décrit à l'aide d'une description de cette tâche suivie de parenthèses (ex. metLaValeurAZero()).
+
+Les étapes qui suivent permettent de procéder à la conversion d'un diagramme d'états à du pseudo-code sans trop de difficultés:
+
+    Définir les noms des états (ex. initialise, étape1, étape2...); 
+    Indiquer tous les changement d'états qui sont possibles pour chacun des états (ex. "Étape1" inscrit dans le code de l'état "initialise" pour indiquer une commande de changement d'état);
+    Ajouter les conditions qui conduisent aux changements d'états (ex. tempsEcoule > DELAI_10_SECONDES pour dire "si le temps écoulés dépasse un délai de 10 secondes)
+    Ajouter les "appels de fonctions" qui décrivent les tâches à réaliser.
+
+Dans le cas d'une machine à états qui passe à l'état Étape 1 après l'initialisation du programme pour passer à l'Étape2 après 1 seconde pour ensuite rester à l'Étape 2, on considère un diagramme d'état qui correspond à:
+
+(initialisation)-------> (Étape1)----t>1s.--->( Étape 2)
+
+Le pseudo code dans ce cas sera:
+
+    initialisation:
+        metTAZero()
+        Etape1;
+    Etape1:
+        incrementeT()
+        t < 1s 
+        metTAZero()
+        Etape2;
+    Etape2 :
+        ;
