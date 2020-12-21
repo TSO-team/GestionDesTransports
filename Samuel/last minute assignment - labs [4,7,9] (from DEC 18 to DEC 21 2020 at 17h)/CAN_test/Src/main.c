@@ -101,7 +101,7 @@ unsigned char hex2ascii(unsigned char hex);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-struct CANInfo BufferCAN;
+struct CANInfo CAN_buffer;
 void main_initialiseAvantLeHAL(void)
 {
   piloteIOT1_initialise();
@@ -192,17 +192,17 @@ int main(void) {
     if (CAN_RX() == 1) {
       if (CAN_Read(dataIN, &CallerID) == 1) {
         switch (CallerID) {
-          case ADRS_COM:
-              BufferCAN.commande.all = dataIN[0];
-              BufferCAN.FE_tri.all = dataIN[1];
-              BufferCAN.FE_pese.all = dataIN[2];
-              printf("\nReceived message from A: \n", hex2ascii(BufferCAN));
+          case ADDRESS_1:
+              CAN_buffer.commande.all = dataIN[0];
+              CAN_buffer.FE_tri.all = dataIN[1];
+              CAN_buffer.FE_pese.all = dataIN[2];
+              printf("\nReceived message from A: \n", hex2ascii(CAN_buffer));
               break;
-          case ADRS_TRI:
-              BufferCAN.tri.all = dataIN[0];
-              BufferCAN.FE_tri.all = dataIN[1];
-              BufferCAN.FE_pese.all = dataIN[2];
-              printf("\nReceived message from B: \n", hex2ascii(BufferCAN));
+          case ADDRESS_2:
+              CAN_buffer.tri.all = dataIN[0];
+              CAN_buffer.FE_tri.all = dataIN[1];
+              CAN_buffer.FE_pese.all = dataIN[2];
+              printf("\nReceived message from B: \n", hex2ascii(CAN_buffer));
               break;
         }
       }
