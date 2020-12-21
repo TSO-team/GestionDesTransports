@@ -27,7 +27,7 @@
  
 #include "RTE_Components.h"
 #include CMSIS_device_header
- 
+
 /* TZ_START_NS: Start address of non-secure application */
 #ifndef TZ_START_NS
 #define TZ_START_NS (0x200000U)

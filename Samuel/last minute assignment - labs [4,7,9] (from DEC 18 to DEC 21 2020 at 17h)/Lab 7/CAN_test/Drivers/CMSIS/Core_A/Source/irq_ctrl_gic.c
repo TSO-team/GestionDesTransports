@@ -24,10 +24,8 @@
 
 #include <stddef.h>
 
-#include "RTE_Components.h"
-#include CMSIS_device_header
-
-#include "irq_ctrl.h"
+#include "../Include/RTE_Components.h"
+#include "../Include/irq_ctrl.h"
 
 #if defined(__GIC_PRESENT) && (__GIC_PRESENT == 1U)
 
