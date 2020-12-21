@@ -1,0 +1,206 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.20.2.41139 for 8051             28/Oct/2019  04:35:50 #
+# Copyright 2004-2013 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  near                                               #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#                                                                             #
+#    Source file        =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\SOURCE\processusClignotant.c               #
+#    Command line       =  "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\SOURCE\processusClignotant.c" -D           #
+#                          OPTION_COMPILE_AVEC_IAR -lCN                       #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\" -lb                #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\" -o                 #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\OBJ\" -e --no_cse         #
+#                          --no_unroll --no_inline --no_code_motion           #
+#                          --no_tbaa --debug --core=plain --dptr=16,1         #
+#                          --data_model=large --code_model=near               #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data --nr_virtual_regs 8         #
+#                          --dlib_config "C:\Program Files (x86)\IAR          #
+#                          Systems\Embedded Workbench                         #
+#                          6.4\8051\LIB\DLIB\dl8051Normal.h" -On --eec++      #
+#    List file          =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\processusClignotant. #
+#                          lst                                                #
+#    Object file        =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\OBJ\processusClignotant.r #
+#                          51                                                 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\yves.roy\Sync\2019-08 247-637\LOGICIEL\S-0008\247-637 S-0006 college\SOURCE\processusClignotant.c
+      1          //processusClignotant:
+      2          //Historique: 
+      3          // 2018-09-24, Yves Roy, creation
+      4          
+      5          //INCLUSIONS
+      6          #include "main.h"
+      7          #include "piloteUART0.h"
+      8          #include "serviceBaseDeTemps.h"
+      9          #include "interfaceT1.h"
+     10          #include "processusClignotant.h"
+     11          
+     12          //Definitions privees
+     13          #define PROCESSUSCLIGNOTANT_COMPTE_POUR_ALLUME (\
+     14            PROCESSUSCLIGNOTANT_TEMPS_ALLUME_EN_MS * FREQUENCE_DE_LA_BASE_DE_TEMPS_EN_HZ \
+     15            /1000.0)
+     16          
+     17          #define PROCESSUSCLIGNOTANT_COMPTE_PAR_PERIODE  (\
+     18            PROCESSUSCLIGNOTANT_PERIODE_EN_MS * FREQUENCE_DE_LA_BASE_DE_TEMPS_EN_HZ \
+     19            /1000.0)
+     20              
+     21          //Declarations de fonctions privees:
+     22          void processusClignotant_gere(void);
+     23          
+     24          //Definitions de variables privees:
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     25          unsigned int processusClignotant_compteur;
+   \                     processusClignotant_compteur:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     26          
+     27          //Definitions de fonctions privees:
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     28          void processusClignotant_gere(void)
+   \                     ??processusClignotant_gere:
+     29          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     30            processusClignotant_compteur++;
+   \   000004   90....       MOV     DPTR,#processusClignotant_compteur
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   2401         ADD     A,#0x1
+   \   00000A   F0           MOVX    @DPTR,A
+   \   00000B   A3           INC     DPTR
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   3400         ADDC    A,#0x0
+   \   00000F   F0           MOVX    @DPTR,A
+     31            if (processusClignotant_compteur < PROCESSUSCLIGNOTANT_COMPTE_POUR_ALLUME)
+   \   000010   90....       MOV     DPTR,#processusClignotant_compteur
+   \   000013   C3           CLR     C
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   94E8         SUBB    A,#-0x18
+   \   000017   A3           INC     DPTR
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   9403         SUBB    A,#0x3
+   \   00001B   5005         JNC     ??processusClignotant_gere_1
+     32            {
+     33              interfaceT1_allume();
+   \   00001D                ; Setup parameters for call to function interfaceT1_allume()
+   \   00001D   12....       LCALL   ??interfaceT1_allume
+     34              return;
+   \   000020   801C         SJMP    ??processusClignotant_gere_2
+     35            }
+     36            if (processusClignotant_compteur < PROCESSUSCLIGNOTANT_COMPTE_PAR_PERIODE)
+   \                     ??processusClignotant_gere_1:
+   \   000022   90....       MOV     DPTR,#processusClignotant_compteur
+   \   000025   C3           CLR     C
+   \   000026   E0           MOVX    A,@DPTR
+   \   000027   94D0         SUBB    A,#-0x30
+   \   000029   A3           INC     DPTR
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   9407         SUBB    A,#0x7
+   \   00002D   5005         JNC     ??processusClignotant_gere_3
+     37            {
+     38              interfaceT1_eteint();
+   \   00002F                ; Setup parameters for call to function interfaceT1_eteint()
+   \   00002F   12....       LCALL   ??interfaceT1_eteint
+     39              return;
+   \   000032   800A         SJMP    ??processusClignotant_gere_2
+     40            }
+     41            processusClignotant_compteur = 0;
+   \                     ??processusClignotant_gere_3:
+   \   000034   90....       MOV     DPTR,#processusClignotant_compteur
+   \   000037   7400         MOV     A,#0x0
+   \   000039   F0           MOVX    @DPTR,A
+   \   00003A   A3           INC     DPTR
+   \   00003B   7400         MOV     A,#0x0
+   \   00003D   F0           MOVX    @DPTR,A
+     42          }
+   \                     ??processusClignotant_gere_2:
+   \   00003E   D083         POP     DPH
+   \   000040   D082         POP     DPL
+   \   000042   22           RET
+     43          
+     44          //Definitions de variables publiques:
+     45          //pas de variables publiques
+     46          
+     47          //Definitions de fonctions publiques:
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     48          void processusClignotant_initialise(void)
+   \                     ??processusClignotant_initialise:
+     49          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     50            processusClignotant_compteur = 0;
+   \   000004   90....       MOV     DPTR,#processusClignotant_compteur
+   \   000007   7400         MOV     A,#0x0
+   \   000009   F0           MOVX    @DPTR,A
+   \   00000A   A3           INC     DPTR
+   \   00000B   7400         MOV     A,#0x0
+   \   00000D   F0           MOVX    @DPTR,A
+     51            serviceBaseDeTemps_execute[PROCESSUSCLIGNOTANT_PHASE] =
+     52                processusClignotant_gere;
+   \   00000E   90....       MOV     DPTR,#serviceBaseDeTemps_execute + 12
+   \   000011   74..         MOV     A,#??processusClignotant_gere & 0xff
+   \   000013   F0           MOVX    @DPTR,A
+   \   000014   A3           INC     DPTR
+   \   000015   74..         MOV     A,#(??processusClignotant_gere >> 8) & 0xff
+   \   000017   F0           MOVX    @DPTR,A
+     53          }
+   \   000018   D083         POP     DPH
+   \   00001A   D082         POP     DPL
+   \   00001C   22           RET
+
+   Maximum stack usage in bytes:
+
+   ISTACK PSTACK XSTACK Function
+   ------ ------ ------ --------
+       2      0      0  processusClignotant_gere()
+                          2 0 0 -> interfaceT1_allume()
+                          2 0 0 -> interfaceT1_eteint()
+       2      0      0  processusClignotant_initialise()
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       2  processusClignotant_compteur
+      67  processusClignotant_gere()
+      29  processusClignotant_initialise()
+
+ 
+ 96 bytes in segment NEAR_CODE
+  2 bytes in segment XDATA_Z
+ 
+ 96 bytes of CODE  memory
+  2 bytes of XDATA memory
+
+Errors: none
+Warnings: none

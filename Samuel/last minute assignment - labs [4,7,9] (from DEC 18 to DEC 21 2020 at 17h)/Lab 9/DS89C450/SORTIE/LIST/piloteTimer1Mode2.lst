@@ -1,0 +1,176 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.20.2.41139 for 8051             28/Oct/2019  04:35:50 #
+# Copyright 2004-2013 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  near                                               #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#                                                                             #
+#    Source file        =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\SOURCE\piloteTimer1Mode2.c                 #
+#    Command line       =  "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\SOURCE\piloteTimer1Mode2.c" -D             #
+#                          OPTION_COMPILE_AVEC_IAR -lCN                       #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\" -lb                #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\" -o                 #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\OBJ\" -e --no_cse         #
+#                          --no_unroll --no_inline --no_code_motion           #
+#                          --no_tbaa --debug --core=plain --dptr=16,1         #
+#                          --data_model=large --code_model=near               #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data --nr_virtual_regs 8         #
+#                          --dlib_config "C:\Program Files (x86)\IAR          #
+#                          Systems\Embedded Workbench                         #
+#                          6.4\8051\LIB\DLIB\dl8051Normal.h" -On --eec++      #
+#    List file          =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\piloteTimer1Mode2.ls #
+#                          t                                                  #
+#    Object file        =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\OBJ\piloteTimer1Mode2.r51 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\yves.roy\Sync\2019-08 247-637\LOGICIEL\S-0008\247-637 S-0006 college\SOURCE\piloteTimer1Mode2.c
+      1          //piloteTimer1Mode2:
+      2          //Historique: 
+      3          // 2018-09-08, Yves Roy, creation
+      4          
+      5          //INCLUSIONS
+      6          #include "main.h"
+
+   \                                 In  segment SFR_AN, at 0x88
+   \   union <unnamed> volatile __sfr _A_TCON
+   \                     _A_TCON:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x8d
+   \   unsigned char volatile __sfr TH1
+   \                     TH1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x89
+   \   union <unnamed> volatile __sfr _A_TMOD
+   \                     _A_TMOD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x8e
+   \   union <unnamed> volatile __sfr _A_CKCON
+   \                     _A_CKCON:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x96
+   \   union <unnamed> volatile __sfr _A_CKMOD
+   \                     _A_CKMOD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x8b
+   \   unsigned char volatile __sfr TL1
+   \                     TL1:
+   \   000000                DS 1
+      7          #include "piloteTimer1Mode2.h"
+      8          
+      9          //Definitions privees
+     10          #define PILOTETIMER1MODE2_COMPTE_DE_DEPART ( \
+     11               256-((1 + PILOTETIMER1MODE2_UTILISE_LE_DOUBLEUR_DE_TAUX)* \
+     12               MAIN_FREQUENCE_D_OSCILLATEUR_EN_KHZ*1000.0)/ \
+     13               (32.0 * PILOTETIMER1MODE2_TAUX_DE_BITS))
+     14          
+     15          //Declarations de fonctions privees:
+     16          __interrupt void PiloteTimer2Autoreload_interruption(void);
+     17          
+     18          //Definitions de variables privees:
+     19          //pas de variables privees
+     20          
+     21          //Definitions de fonctions privees:
+     22          //pas de fonctions privees
+     23          
+     24          //Definitions de variables publiques:
+     25          // pas de variables publiques
+     26          
+     27          //Definitions de fonctions publiques:
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     28          void piloteTimer1Mode2_initialise(void)
+   \                     ??piloteTimer1Mode2_initialise:
+     29          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     30           //initialise le timer1 en mode 1 pour utiliser le UART0
+     31            TCON_bit.TR1 = 0; //arrete le compteur
+   \   000000   C28E         CLR     0x88.6
+     32            TCON_bit.TF1 = 0; //efface toutes demandes d'interruptions
+   \   000002   C28F         CLR     0x88.7
+     33            TMOD_bit.M10 = 0;
+   \   000004   5389FD       ANL     0x89,#0xfd
+     34            TMOD_bit.M11 = 1;
+   \   000007   438920       ORL     0x89,#0x20
+     35            TMOD_bit.C_T1 = 0;
+   \   00000A   5389BF       ANL     0x89,#0xbf
+     36            TMOD_bit.GATE1 = 0;
+   \   00000D   53897F       ANL     0x89,#0x7f
+     37            CKMOD_bit.T1MH = 1; //utilise system clock et osc/1 car pmr par defaut
+   \   000010   439610       ORL     0x96,#0x10
+     38            CKCON_bit.T1M = 1; //sans effet si TIMH a 1
+   \   000013   438E10       ORL     0x8e,#0x10
+     39          
+     40            TL1 = (unsigned char)(PILOTETIMER1MODE2_COMPTE_DE_DEPART);
+   \   000016   758BDC       MOV     0x8b,#-0x24
+     41            TH1 = (unsigned char)(PILOTETIMER1MODE2_COMPTE_DE_DEPART);
+   \   000019   758DDC       MOV     0x8d,#-0x24
+     42            TCON_bit.TR1 = 1; //lance le compteur
+   \   00001C   D28E         SETB    0x88.6
+     43          }
+   \   00001E   22           RET
+   \   00001F                REQUIRE _A_TCON
+   \   00001F                REQUIRE _A_TMOD
+   \   00001F                REQUIRE _A_CKMOD
+   \   00001F                REQUIRE _A_CKCON
+   \   00001F                REQUIRE TL1
+   \   00001F                REQUIRE TH1
+     44          
+     45          
+     46          
+
+   Maximum stack usage in bytes:
+
+   ISTACK PSTACK XSTACK Function
+   ------ ------ ------ --------
+       0      0      0  piloteTimer1Mode2_initialise()
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       1  TH1
+       1  TL1
+       1  _A_CKCON
+       1  _A_CKMOD
+       1  _A_TCON
+       1  _A_TMOD
+      31  piloteTimer1Mode2_initialise()
+
+ 
+ 31 bytes in segment NEAR_CODE
+  6 bytes in segment SFR_AN
+ 
+ 31 bytes of CODE memory
+  0 bytes of DATA memory (+ 6 bytes shared)
+
+Errors: none
+Warnings: none

@@ -1,0 +1,137 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.20.2.41139 for 8051            28/Oct/2019  04:35:50 /
+// Copyright 2004-2013 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  1,16                                              /
+//                                                                            /
+//    Source file        =  C:\Users\yves.roy\Sync\2019-08                    /
+//                          247-637\LOGICIEL\S-0008\247-637 S-0006            /
+//                          college\SOURCE\piloteTimer1Mode2.c                /
+//    Command line       =  "C:\Users\yves.roy\Sync\2019-08                   /
+//                          247-637\LOGICIEL\S-0008\247-637 S-0006            /
+//                          college\SOURCE\piloteTimer1Mode2.c" -D            /
+//                          OPTION_COMPILE_AVEC_IAR -lCN                      /
+//                          "C:\Users\yves.roy\Sync\2019-08                   /
+//                          247-637\LOGICIEL\S-0008\247-637 S-0006            /
+//                          college\PROJET\..\SORTIE\LIST\" -lb               /
+//                          "C:\Users\yves.roy\Sync\2019-08                   /
+//                          247-637\LOGICIEL\S-0008\247-637 S-0006            /
+//                          college\PROJET\..\SORTIE\LIST\" -o                /
+//                          "C:\Users\yves.roy\Sync\2019-08                   /
+//                          247-637\LOGICIEL\S-0008\247-637 S-0006            /
+//                          college\PROJET\..\SORTIE\OBJ\" -e --no_cse        /
+//                          --no_unroll --no_inline --no_code_motion          /
+//                          --no_tbaa --debug --core=plain --dptr=16,1        /
+//                          --data_model=large --code_model=near              /
+//                          --calling_convention=xdata_reentrant              /
+//                          --place_constants=data --nr_virtual_regs 8        /
+//                          --dlib_config "C:\Program Files (x86)\IAR         /
+//                          Systems\Embedded Workbench                        /
+//                          6.4\8051\LIB\DLIB\dl8051Normal.h" -On --eec++     /
+//    List file          =  C:\Users\yves.roy\Sync\2019-08                    /
+//                          247-637\LOGICIEL\S-0008\247-637 S-0006            /
+//                          college\PROJET\..\SORTIE\LIST\piloteTimer1Mode2.s /
+//                          51                                                /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME piloteTimer1Mode2
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        PUBLIC ??piloteTimer1Mode2_initialise
+        PUBWEAK TH1
+        PUBWEAK TL1
+        PUBWEAK _A_CKCON
+        PUBWEAK _A_CKMOD
+        PUBWEAK _A_TCON
+        PUBWEAK _A_TMOD
+
+
+        ASEGN SFR_AN:DATA:NOROOT,088H
+// union <unnamed> volatile __sfr _A_TCON
+_A_TCON:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,08dH
+// unsigned char volatile __sfr TH1
+TH1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,089H
+// union <unnamed> volatile __sfr _A_TMOD
+_A_TMOD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,08eH
+// union <unnamed> volatile __sfr _A_CKCON
+_A_CKCON:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,096H
+// union <unnamed> volatile __sfr _A_CKMOD
+_A_CKMOD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,08bH
+// unsigned char volatile __sfr TL1
+TL1:
+        DATA8
+        DS 1
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+??piloteTimer1Mode2_initialise:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        CLR     0x88.6
+        CLR     0x88.7
+        ANL     0x89,#0xfd
+        ORL     0x89,#0x20
+        ANL     0x89,#0xbf
+        ANL     0x89,#0x7f
+        ORL     0x96,#0x10
+        ORL     0x8e,#0x10
+        MOV     0x8b,#-0x24
+        MOV     0x8d,#-0x24
+        SETB    0x88.6
+        RET
+        REQUIRE _A_TCON
+        REQUIRE _A_TMOD
+        REQUIRE _A_CKMOD
+        REQUIRE _A_CKCON
+        REQUIRE TL1
+        REQUIRE TH1
+
+        END
+// 
+// 31 bytes in segment NEAR_CODE
+//  6 bytes in segment SFR_AN
+// 
+// 31 bytes of CODE memory
+//  0 bytes of DATA memory (+ 6 bytes shared)
+//
+//Errors: none
+//Warnings: none

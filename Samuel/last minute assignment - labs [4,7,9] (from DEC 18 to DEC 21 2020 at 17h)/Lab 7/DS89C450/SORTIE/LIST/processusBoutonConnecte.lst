@@ -1,0 +1,377 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.20.2.41139 for 8051             28/Oct/2019  04:35:49 #
+# Copyright 2004-2013 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  near                                               #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#                                                                             #
+#    Source file        =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\SOURCE\processusBoutonConnecte.c           #
+#    Command line       =  "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\SOURCE\processusBoutonConnecte.c" -D       #
+#                          OPTION_COMPILE_AVEC_IAR -lCN                       #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\" -lb                #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\" -o                 #
+#                          "C:\Users\yves.roy\Sync\2019-08                    #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\OBJ\" -e --no_cse         #
+#                          --no_unroll --no_inline --no_code_motion           #
+#                          --no_tbaa --debug --core=plain --dptr=16,1         #
+#                          --data_model=large --code_model=near               #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data --nr_virtual_regs 8         #
+#                          --dlib_config "C:\Program Files (x86)\IAR          #
+#                          Systems\Embedded Workbench                         #
+#                          6.4\8051\LIB\DLIB\dl8051Normal.h" -On --eec++      #
+#    List file          =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\LIST\processusBoutonConne #
+#                          cte.lst                                            #
+#    Object file        =  C:\Users\yves.roy\Sync\2019-08                     #
+#                          247-637\LOGICIEL\S-0008\247-637 S-0006             #
+#                          college\PROJET\..\SORTIE\OBJ\processusBoutonConnec #
+#                          te.r51                                             #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\yves.roy\Sync\2019-08 247-637\LOGICIEL\S-0008\247-637 S-0006 college\SOURCE\processusBoutonConnecte.c
+      1          //processusBoutonConnecte:
+      2          //Historique: 
+      3          // 2019-10-27, Yves Roy, creation
+      4          
+      5          //INCLUSIONS
+      6          #include "main.h"
+      7          #include "serviceBaseDeTemps.h"
+      8          #include "interfaceB1.h"
+      9          #include "interfaceS0009.h"
+     10          #include "processusBoutonConnecte.h"
+     11          
+     12          //Definitions privees
+     13          #define PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_RECEVOIR INTERFACES0009_NOMBRE_D_OCTETS_A_RECEVOIR
+     14          #define PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_TRAITER PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_RECEVOIR
+     15          #define PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_TRANSMETTRE PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_TRAITER
+     16          
+     17          
+     18          //Declarations de fonctions privees:
+     19          void processusBoutonConnecte_recupereLesValeursRecues(void);
+     20          void processusBoutonConnecte_traiteUneDemande(void);
+     21          void processusBoutonConnecte_prepareLaTransmission(void);
+     22          void processusBoutonConnecte_attendApresInterfaceB1(void);
+     23          void processusBoutonConnecte_gere(void);
+     24          
+     25          //Definitions de variables privees:
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     26          unsigned char processusBoutonConnecte_octetsTraites[PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_TRAITER];
+   \                     processusBoutonConnecte_octetsTraites:
+   \   000000                DS 4
+   \   000004                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     27          unsigned char processusBoutonConnecte_reponse;
+   \                     processusBoutonConnecte_reponse:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     28          
+     29          //Definitions de fonctions privees:
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     30          void processusBoutonConnecte_recupereLesValeursRecues(void)
+   \                     ??processusBoutonConnecte_recupereLesValeursRec:
+     31          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+     32            unsigned char i;
+     33            for (i = 0; i < PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_RECEVOIR; i++)
+   \   000005   7800         MOV     R0,#0x0
+   \                     ??processusBoutonConnecte_recupereLesValeursRec_1:
+   \   000007   E8           MOV     A,R0
+   \   000008   C3           CLR     C
+   \   000009   9404         SUBB    A,#0x4
+   \   00000B   502B         JNC     ??processusBoutonConnecte_recupereLesValeursRec_2
+     34            {
+     35              processusBoutonConnecte_octetsTraites[i] = interfaceS0009.octetsRecus[i];
+   \   00000D   88..         MOV     ?V0 + 0,R0
+   \   00000F   75..00       MOV     ?V0 + 1,#0x0
+   \   000012   74..         MOV     A,#(interfaceS0009 + 2) & 0xff
+   \   000014   25..         ADD     A,?V0 + 0
+   \   000016   F582         MOV     DPL,A
+   \   000018   74..         MOV     A,#((interfaceS0009 + 2) >> 8) & 0xff
+   \   00001A   35..         ADDC    A,?V0 + 1
+   \   00001C   F583         MOV     DPH,A
+   \   00001E   E0           MOVX    A,@DPTR
+   \   00001F   C0E0         PUSH    A
+   \   000021   88..         MOV     ?V0 + 0,R0
+   \   000023   75..00       MOV     ?V0 + 1,#0x0
+   \   000026   74..         MOV     A,#processusBoutonConnecte_octetsTraites & 0xff
+   \   000028   25..         ADD     A,?V0 + 0
+   \   00002A   F582         MOV     DPL,A
+   \   00002C   74..         MOV     A,#(processusBoutonConnecte_octetsTraites >> 8) & 0xff
+   \   00002E   35..         ADDC    A,?V0 + 1
+   \   000030   F583         MOV     DPH,A
+   \   000032   D0E0         POP     A
+   \   000034   F0           MOVX    @DPTR,A
+     36            }
+   \   000035   08           INC     R0
+   \   000036   80CF         SJMP    ??processusBoutonConnecte_recupereLesValeursRec_1
+     37          }
+   \                     ??processusBoutonConnecte_recupereLesValeursRec_2:
+   \   000038   7F02         MOV     R7,#0x2
+   \   00003A   02....       LJMP    ?FUNC_LEAVE_XDATA
+     38          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     39          void processusBoutonConnecte_traiteUneDemande(void)
+   \                     ??processusBoutonConnecte_traiteUneDemande:
+     40          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+     41          unsigned char i;
+     42            for (i = 0; i < PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_TRAITER; i++)
+   \   000005   7800         MOV     R0,#0x0
+   \                     ??processusBoutonConnecte_traiteUneDemande_1:
+   \   000007   E8           MOV     A,R0
+   \   000008   C3           CLR     C
+   \   000009   9404         SUBB    A,#0x4
+   \   00000B   502F         JNC     ??processusBoutonConnecte_traiteUneDemande_2
+     43            {
+     44              processusBoutonConnecte_octetsTraites[i] *= 2;
+   \   00000D   75F002       MOV     B,#0x2
+   \   000010   88..         MOV     ?V0 + 0,R0
+   \   000012   75..00       MOV     ?V0 + 1,#0x0
+   \   000015   74..         MOV     A,#processusBoutonConnecte_octetsTraites & 0xff
+   \   000017   25..         ADD     A,?V0 + 0
+   \   000019   F582         MOV     DPL,A
+   \   00001B   74..         MOV     A,#(processusBoutonConnecte_octetsTraites >> 8) & 0xff
+   \   00001D   35..         ADDC    A,?V0 + 1
+   \   00001F   F583         MOV     DPH,A
+   \   000021   E0           MOVX    A,@DPTR
+   \   000022   A4           MUL     AB
+   \   000023   C0E0         PUSH    A
+   \   000025   88..         MOV     ?V0 + 0,R0
+   \   000027   75..00       MOV     ?V0 + 1,#0x0
+   \   00002A   74..         MOV     A,#processusBoutonConnecte_octetsTraites & 0xff
+   \   00002C   25..         ADD     A,?V0 + 0
+   \   00002E   F582         MOV     DPL,A
+   \   000030   74..         MOV     A,#(processusBoutonConnecte_octetsTraites >> 8) & 0xff
+   \   000032   35..         ADDC    A,?V0 + 1
+   \   000034   F583         MOV     DPH,A
+   \   000036   D0E0         POP     A
+   \   000038   F0           MOVX    @DPTR,A
+     45            }
+   \   000039   08           INC     R0
+   \   00003A   80CB         SJMP    ??processusBoutonConnecte_traiteUneDemande_1
+     46          }
+   \                     ??processusBoutonConnecte_traiteUneDemande_2:
+   \   00003C   7F02         MOV     R7,#0x2
+   \   00003E   02....       LJMP    ?FUNC_LEAVE_XDATA
+     47          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     48          void processusBoutonConnecte_prepareLaTransmission(void)
+   \                     ??processusBoutonConnecte_prepareLaTransmission:
+     49          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+     50          unsigned char i;
+     51            for (i = 0; i < PROCESSUSBOUTONCONNECTE_NOMBRE_D_OCTETS_A_TRANSMETTRE; i++)
+   \   000005   7800         MOV     R0,#0x0
+   \                     ??processusBoutonConnecte_prepareLaTransmission_1:
+   \   000007   E8           MOV     A,R0
+   \   000008   C3           CLR     C
+   \   000009   9404         SUBB    A,#0x4
+   \   00000B   502B         JNC     ??processusBoutonConnecte_prepareLaTransmission_2
+     52            {
+     53              interfaceS0009.octetsATransmettre[i] = processusBoutonConnecte_octetsTraites[i];
+   \   00000D   88..         MOV     ?V0 + 0,R0
+   \   00000F   75..00       MOV     ?V0 + 1,#0x0
+   \   000012   74..         MOV     A,#processusBoutonConnecte_octetsTraites & 0xff
+   \   000014   25..         ADD     A,?V0 + 0
+   \   000016   F582         MOV     DPL,A
+   \   000018   74..         MOV     A,#(processusBoutonConnecte_octetsTraites >> 8) & 0xff
+   \   00001A   35..         ADDC    A,?V0 + 1
+   \   00001C   F583         MOV     DPH,A
+   \   00001E   E0           MOVX    A,@DPTR
+   \   00001F   C0E0         PUSH    A
+   \   000021   88..         MOV     ?V0 + 0,R0
+   \   000023   75..00       MOV     ?V0 + 1,#0x0
+   \   000026   74..         MOV     A,#(interfaceS0009 + 7) & 0xff
+   \   000028   25..         ADD     A,?V0 + 0
+   \   00002A   F582         MOV     DPL,A
+   \   00002C   74..         MOV     A,#((interfaceS0009 + 7) >> 8) & 0xff
+   \   00002E   35..         ADDC    A,?V0 + 1
+   \   000030   F583         MOV     DPH,A
+   \   000032   D0E0         POP     A
+   \   000034   F0           MOVX    @DPTR,A
+     54            }
+   \   000035   08           INC     R0
+   \   000036   80CF         SJMP    ??processusBoutonConnecte_prepareLaTransmission_1
+     55          }
+   \                     ??processusBoutonConnecte_prepareLaTransmission_2:
+   \   000038   7F02         MOV     R7,#0x2
+   \   00003A   02....       LJMP    ?FUNC_LEAVE_XDATA
+     56          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     57          void processusBoutonConnecte_attendApresInterfaceB1(void)
+   \                     ??processusBoutonConnecte_attendApresInterfaceB:
+     58          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     59            if (interfaceB1.etatDuModule == MODULE_PAS_EN_FONCTION)
+   \   000004   90....       MOV     DPTR,#interfaceB1
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   6010         JZ      ??processusBoutonConnecte_attendApresInterfaceB_1
+     60            {
+     61              return;
+     62            }
+     63            processusBoutonConnecte.etatDuModule = MODULE_EN_FONCTION;  
+   \   00000A   90....       MOV     DPTR,#processusBoutonConnecte
+   \   00000D   7401         MOV     A,#0x1
+   \   00000F   F0           MOVX    @DPTR,A
+     64            serviceBaseDeTemps_execute[PROCESSUSBOUTONCONNECTE_PHASE] =
+     65                processusBoutonConnecte_gere;
+   \   000010   90....       MOV     DPTR,#serviceBaseDeTemps_execute + 8
+   \   000013   74..         MOV     A,#??processusBoutonConnecte_gere & 0xff
+   \   000015   F0           MOVX    @DPTR,A
+   \   000016   A3           INC     DPTR
+   \   000017   74..         MOV     A,#(??processusBoutonConnecte_gere >> 8) & 0xff
+   \   000019   F0           MOVX    @DPTR,A
+     66          }
+   \                     ??processusBoutonConnecte_attendApresInterfaceB_1:
+   \   00001A   D083         POP     DPH
+   \   00001C   D082         POP     DPL
+   \   00001E   22           RET
+     67          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     68          void processusBoutonConnecte_gere(void)
+   \                     ??processusBoutonConnecte_gere:
+     69          {  
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     70            if (interfaceS0009.information == INFORMATION_TRAITEE)
+   \   000004   90....       MOV     DPTR,#interfaceS0009
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   6015         JZ      ??processusBoutonConnecte_gere_1
+     71            {
+     72              return;
+     73            }
+     74            interfaceS0009.information = INFORMATION_TRAITEE;
+   \   00000A   90....       MOV     DPTR,#interfaceS0009
+   \   00000D   7400         MOV     A,#0x0
+   \   00000F   F0           MOVX    @DPTR,A
+     75            processusBoutonConnecte_recupereLesValeursRecues();
+   \   000010                ; Setup parameters for call to function processusBoutonConnecte_recupereLesValeursRecues()
+   \   000010   12....       LCALL   ??processusBoutonConnecte_recupereLesValeursRec
+     76            processusBoutonConnecte_traiteUneDemande();
+   \   000013                ; Setup parameters for call to function processusBoutonConnecte_traiteUneDemande()
+   \   000013   12....       LCALL   ??processusBoutonConnecte_traiteUneDemande
+     77            processusBoutonConnecte_prepareLaTransmission();
+   \   000016                ; Setup parameters for call to function processusBoutonConnecte_prepareLaTransmission()
+   \   000016   12....       LCALL   ??processusBoutonConnecte_prepareLaTransmission
+     78            interfaceS0009.requete = REQUETE_ACTIVE;
+   \   000019   90....       MOV     DPTR,#interfaceS0009 + 6
+   \   00001C   7401         MOV     A,#0x1
+   \   00001E   F0           MOVX    @DPTR,A
+     79          }
+   \                     ??processusBoutonConnecte_gere_1:
+   \   00001F   D083         POP     DPH
+   \   000021   D082         POP     DPL
+   \   000023   22           RET
+     80          
+     81          //Definitions de variables publiques:
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     82          PROCESSUSBOUTONCONNECTE processusBoutonConnecte;
+   \                     processusBoutonConnecte:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     83          
+     84          //Definitions de fonctions publiques:
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     85          void processusBoutonConnecte_initialise(void)
+   \                     ??processusBoutonConnecte_initialise:
+     86          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     87            processusBoutonConnecte.etatDuModule = MODULE_PAS_EN_FONCTION;
+   \   000004   90....       MOV     DPTR,#processusBoutonConnecte
+   \   000007   7400         MOV     A,#0x0
+   \   000009   F0           MOVX    @DPTR,A
+     88            serviceBaseDeTemps_execute[PROCESSUSBOUTONCONNECTE_PHASE] =
+     89                processusBoutonConnecte_attendApresInterfaceB1;
+   \   00000A   90....       MOV     DPTR,#serviceBaseDeTemps_execute + 8
+   \   00000D   74..         MOV     A,#??processusBoutonConnecte_attendApresInterfaceB & 0xff
+   \   00000F   F0           MOVX    @DPTR,A
+   \   000010   A3           INC     DPTR
+   \   000011   74..         MOV     A,#(??processusBoutonConnecte_attendApresInterfaceB >> 8) & 0xff
+   \   000013   F0           MOVX    @DPTR,A
+     90          }
+   \   000014   D083         POP     DPH
+   \   000016   D082         POP     DPL
+   \   000018   22           RET
+
+   Maximum stack usage in bytes:
+
+   ISTACK PSTACK XSTACK Function
+   ------ ------ ------ --------
+       2      0      0  processusBoutonConnecte_attendApresInterfaceB1()
+       2      0      0  processusBoutonConnecte_gere()
+                          2 0 0 -> processusBoutonConnecte_prepareLaTransmission()
+                          2 0 0 -> processusBoutonConnecte_recupereLesValeursRecues()
+                          2 0 0 -> processusBoutonConnecte_traiteUneDemande()
+       2      0      0  processusBoutonConnecte_initialise()
+       1      0      9  processusBoutonConnecte_prepareLaTransmission()
+       1      0      9  processusBoutonConnecte_recupereLesValeursRecues()
+       1      0      9  processusBoutonConnecte_traiteUneDemande()
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       1  processusBoutonConnecte
+      31  processusBoutonConnecte_attendApresInterfaceB1()
+      36  processusBoutonConnecte_gere()
+      25  processusBoutonConnecte_initialise()
+       4  processusBoutonConnecte_octetsTraites
+      61  processusBoutonConnecte_prepareLaTransmission()
+      61  processusBoutonConnecte_recupereLesValeursRecues()
+       1  processusBoutonConnecte_reponse
+      65  processusBoutonConnecte_traiteUneDemande()
+
+ 
+ 279 bytes in segment NEAR_CODE
+   6 bytes in segment XDATA_Z
+ 
+ 279 bytes of CODE  memory
+   6 bytes of XDATA memory
+
+Errors: none
+Warnings: none
