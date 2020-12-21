@@ -6,6 +6,18 @@
 #include <serviceBaseDeTemps.h>
 #include <serviceCAN.h>
 
+#define INFORMATION_DISPONIBLE              1
+#define INFORMATION_TRAITEE                 0
+#define REQUETE_ACTIVE                      1
+#define REQUETE_TRAITEE                     0
+#define MODULE_EN_FONCTION                  1
+#define MODULE_PAS_EN_FONCTION              0
+
+#define INFO_TRAITE INFORMATION_TRAITEE
+#define REQUETE_TRAITE REQUETE_TRAITEE
+#define PHASE_RX_CAN
+#define PHASE_TX_CAN
+
 void processusRX_CAN(void);
 void processusTX_CAN(void);
 
@@ -16,7 +28,9 @@ void processusRX_CAN(void) {
     static int counterRX = 0;
 
     counterRX++;
-    if (processusCAN.information == INFO_DISPO)
+    processusCAN.information == CAN_RX();
+    //if (processusCAN.information == INFO_DISPO)
+    if (processusCAN.information == 1)
         return;
     if (counterRX < 2000)
         return;
@@ -40,7 +54,7 @@ void processusRX_CAN(void) {
             }
         }
     }
-    processusCAN.information = INFO_DISPO;
+    //processusCAN.information = INFO_DISPO;
 }
 
 void processusTX_CAN(void) {

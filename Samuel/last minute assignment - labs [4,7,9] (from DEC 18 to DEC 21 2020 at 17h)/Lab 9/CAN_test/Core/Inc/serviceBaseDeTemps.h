@@ -3,9 +3,9 @@
 
 //MODULE: serviceBaseDeTemps
 //DESCRIPTION: pour mettre en place un service d'appels periodiques de fonctions
-//pointées par un tableau de pointeurs de fonctions. Le service met en place
-//une base de temps qui reposent sur l'emploi d'interruptions qui sont générées
-//par le compteur Timer6 du STM32F407 qui opère en mode Up
+//pointï¿½es par un tableau de pointeurs de fonctions. Le service met en place
+//une base de temps qui reposent sur l'emploi d'interruptions qui sont gï¿½nï¿½rï¿½es
+//par le compteur Timer6 du STM32F407 qui opï¿½re en mode Up
 
 //HISTORIQUE:
 // 2018-09-30, Yves Roy, creation
@@ -18,15 +18,17 @@
 //Dependances logicielles
 //(copiez et adaptez ce qui suit dans "main.h")
 //#define SERVICEBASEDETEMPS_NOMBRE_DE_PHASES 3
-//pas de dépendances logicielles
+//pas de dï¿½pendances logicielles
 
 //INFORMATION PUBLIQUE:
 
 //Definitions publiques:
 //pas de definitions publiques
+#define SERVICEBASEDETEMPS_NOMBRE_DE_PHASES 7
 
 //Fonctions publiques:
 void serviceBaseDeTemps_initialise(void);
+void serviceBaseDeTemps_gere(void);
 
 //Variables publiques:
 extern void (*serviceBaseDeTemps_execute[SERVICEBASEDETEMPS_NOMBRE_DE_PHASES])(void);

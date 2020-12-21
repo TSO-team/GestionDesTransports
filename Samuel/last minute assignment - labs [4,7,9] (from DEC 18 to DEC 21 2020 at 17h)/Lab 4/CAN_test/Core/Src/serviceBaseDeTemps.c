@@ -7,6 +7,8 @@
 #include <serviceBaseDeTemps.h>
 #include "../Inc/main.h"
 
+#define SERVICEBASEDETEMPS_NOMBRE_DE_PHASES 7
+
 //Definitions privees
 //pas de definitions privees
 

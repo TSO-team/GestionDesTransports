@@ -21,7 +21,6 @@ C_SRCS += \
 ../Core/Src/piloteIOT2.c \
 ../Core/Src/piloteIOT3.c \
 ../Core/Src/piloteIOT4.c \
-../Core/Src/piloteTimer1Mode2.c \
 ../Core/Src/piloteTimer6Up.c \
 ../Core/Src/piloteUSART2.c \
 ../Core/Src/processusBoutonConnecte.c \
@@ -55,7 +54,6 @@ OBJS += \
 ./Core/Src/piloteIOT2.o \
 ./Core/Src/piloteIOT3.o \
 ./Core/Src/piloteIOT4.o \
-./Core/Src/piloteTimer1Mode2.o \
 ./Core/Src/piloteTimer6Up.o \
 ./Core/Src/piloteUSART2.o \
 ./Core/Src/processusBoutonConnecte.o \
@@ -89,7 +87,6 @@ C_DEPS += \
 ./Core/Src/piloteIOT2.d \
 ./Core/Src/piloteIOT3.d \
 ./Core/Src/piloteIOT4.d \
-./Core/Src/piloteTimer1Mode2.d \
 ./Core/Src/piloteTimer6Up.d \
 ./Core/Src/piloteUSART2.d \
 ./Core/Src/processusBoutonConnecte.d \
@@ -141,8 +138,6 @@ Core/Src/piloteIOT3.o: ../Core/Src/piloteIOT3.c
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DDEBUG -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/piloteIOT3.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/Src/piloteIOT4.o: ../Core/Src/piloteIOT4.c
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DDEBUG -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/piloteIOT4.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
-Core/Src/piloteTimer1Mode2.o: ../Core/Src/piloteTimer1Mode2.c
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DDEBUG -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/piloteTimer1Mode2.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/Src/piloteTimer6Up.o: ../Core/Src/piloteTimer6Up.c
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DDEBUG -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/piloteTimer6Up.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 Core/Src/piloteUSART2.o: ../Core/Src/piloteUSART2.c

@@ -28,6 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "../Inc/serviceCAN.h"
 #include "../Inc/piloteIOT1.h"
 #include "../Inc/piloteIOT2.h"
@@ -47,7 +48,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define MESSAGE_SIZE 5
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -74,6 +75,7 @@ void main_initialiseAvantLeHAL(void);
 void main_initialiseApresLeHAL(void);
 unsigned char hex2ascii(unsigned char hex);
 unsigned char *buffer_hex2ascii(unsigned char *buffer, unsigned char buffer_size);
+void (*serviceBaseDeTemps_execute[SERVICEBASEDETEMPS_NOMBRE_DE_PHASES])(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -139,7 +141,52 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-
+	switch (getchar()) {
+	  case 'S':
+	  case 's':
+	    *TabOutput = message;
+	    Temp = TabOutput[0] * 100;
+	    Temp += TabOutput[1] * 10;
+	    Temp += TabOutput[2];
+	    CallerIDOut = Temp;
+	    Temp = TabOutput[3]<<4;
+	    Temp += TabOutput[4];
+	    dataOUT[0] = Temp;
+	    Temp = TabOutput[5]<<4;
+	    Temp += TabOutput[6];
+	    dataOUT[1] = Temp;
+	    Temp = TabOutput[7]<<4;
+	    Temp += TabOutput[8];
+	    dataOUT[2] = Temp;
+	    Temp = TabOutput[9]<<4;
+	    Temp += TabOutput[10];
+	    dataOUT[3] = Temp;
+	    CAN_Send(CallerIDOut, dataOUT, 3);
+	    break;
+	}
+	#ifdef DEBUG
+	  printf("\nSending CAN message: %s\n", TabOutput);
+    #endif
+    if (CAN_RX() == 1) {
+	  if (CAN_Read(dataIN, &CallerID) == 1) {
+	    switch (CallerID) {
+	      case ADDRESS_1:
+	        CAN_buffer.byte[0] = dataIN[0];
+	        CAN_buffer.byte[1] = dataIN[1];
+	        CAN_buffer.byte[2] = dataIN[2];
+	        CAN_buffer.byte[3] = dataIN[3];
+	        printf("\nReceived message from ADDRESS_1: \n", buffer_hex2ascii(CAN_buffer.byte, MESSAGE_SIZE));
+	        break;
+	      case ADDRESS_2:
+	        CAN_buffer.byte[0] = dataIN[0];
+	        CAN_buffer.byte[1] = dataIN[1];
+	        CAN_buffer.byte[2] = dataIN[2];
+	        CAN_buffer.byte[3] = dataIN[3];
+	        printf("\nReceived message from ADDRESS_2: \n", buffer_hex2ascii(CAN_buffer.byte, MESSAGE_SIZE));
+	        break;
+	    }
+	  }
+    }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

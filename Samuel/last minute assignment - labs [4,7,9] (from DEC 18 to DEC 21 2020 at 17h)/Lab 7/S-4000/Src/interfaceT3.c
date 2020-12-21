@@ -1,0 +1,14 @@
+// interfaceT3.c
+#include "interfaceT3.h"
+
+void interfaceT3_allume(void) {
+  piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ALLUMER);
+}
+
+void interfaceT3_eteint(void) {
+  piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ETEINDRE);
+}
+
+void interfaceT3_initialise(void) {
+  piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ETEINDRE);
+}

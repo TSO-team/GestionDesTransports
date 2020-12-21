@@ -15,7 +15,6 @@
 "Core/Src/piloteIOT2.o"
 "Core/Src/piloteIOT3.o"
 "Core/Src/piloteIOT4.o"
-"Core/Src/piloteTimer1Mode2.o"
 "Core/Src/piloteTimer6Up.o"
 "Core/Src/piloteUSART2.o"
 "Core/Src/processusBoutonConnecte.o"
