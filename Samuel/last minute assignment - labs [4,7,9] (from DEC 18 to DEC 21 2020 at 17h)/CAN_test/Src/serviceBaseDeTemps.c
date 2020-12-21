@@ -17,25 +17,17 @@ void serviceBaseDeTemps_gere(void);
 //pas de variables privees
 
 //Definitions de fonctions privees:
-void serviceBaseDeTemps_gere(void)
-{
-unsigned char i;
-  for (i = 0; i < SERVICEBASEDETEMPS_NOMBRE_DE_PHASES; i++)
-  {
-    serviceBaseDeTemps_execute[i]();
-  }
+void serviceBaseDeTemps_gere(void) {
+    for (unsigned char i = 0; i < SERVICEBASEDETEMPS_NOMBRE_DE_PHASES; i++)
+        serviceBaseDeTemps_execute[i]();
 }
-    
+
 //Definitions de variables publiques:
 void (*serviceBaseDeTemps_execute[SERVICEBASEDETEMPS_NOMBRE_DE_PHASES])(void);
 
 //Definitions de fonctions publiques:
-void serviceBaseDeTemps_initialise(void)
-{
-unsigned char i;
-  for (i = 0; i < SERVICEBASEDETEMPS_NOMBRE_DE_PHASES; i++)
-  {
-    serviceBaseDeTemps_execute[i] = neFaitRien;
-  }
-  piloteTimer6Up_execute = serviceBaseDeTemps_gere;
+void serviceBaseDeTemps_initialise(void) {
+    for (unsigned char i = 0; i < SERVICEBASEDETEMPS_NOMBRE_DE_PHASES; i++)
+        serviceBaseDeTemps_execute[i] = neFaitRien;
+    piloteTimer6Up_execute = serviceBaseDeTemps_gere;
 }

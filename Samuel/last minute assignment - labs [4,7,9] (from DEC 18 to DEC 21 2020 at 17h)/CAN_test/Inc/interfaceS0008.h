@@ -29,13 +29,12 @@
 #define INTERFACES0008_ERREUR_AU_NIVEAU_DU_PILOTE 1
 #define INTERFACES0008_ERREUR_OCTET_INVALIDE 2
 
-typedef struct
-{
-  unsigned char information;  
-  unsigned char statut;
-  unsigned char octetsRecus[INTERFACES0008_NOMBRE_D_OCTETS_A_RECEVOIR];
+typedef struct {
+    unsigned char information;  
+    unsigned char statut;
+    unsigned char octetsRecus[INTERFACES0008_NOMBRE_D_OCTETS_A_RECEVOIR];
     unsigned char requete;
-  unsigned char octetsATransmettre[INTERFACES0008_NOMBRE_D_OCTETS_A_TRANSMETTRE];
+    unsigned char octetsATransmettre[INTERFACES0008_NOMBRE_D_OCTETS_A_TRANSMETTRE];
 } INTERFACES0008;
 
 //Fonctions publiques:

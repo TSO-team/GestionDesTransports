@@ -22,16 +22,10 @@
 // pas de variables publiques
 
 //Definitions de fonctions publiques:
-unsigned char piloteIOB1_litLEntree(void)
-{
-  return HAL_GPIO_ReadPin(PILOTEIOB1_PORT, PILOTEIOB1_ENTREE);
+unsigned char piloteIOB1_litLEntree(void) {
+    return HAL_GPIO_ReadPin(PILOTEIOB1_PORT, PILOTEIOB1_ENTREE);
 }
 
-void piloteIOB1_initialise(void)
-{
-  //on pose que le cube a fait la configuration par defaut
+void piloteIOB1_initialise(void) {
+  // Le cube a fait la configuration par defaut.
 }
-
-
-
-

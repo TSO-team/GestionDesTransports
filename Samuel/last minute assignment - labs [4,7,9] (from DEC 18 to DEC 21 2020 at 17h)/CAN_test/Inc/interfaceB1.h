@@ -28,15 +28,14 @@
 
 //INFORMATION PUBLIQUE:
 //Definitions publiques:
-#define INTERFACEB1_RELACHE  0
+#define INTERFACEB1_RELACHE 0
 #define INTERFACEB1_APPUYE  1
 #define INTERFACEB1_INCONNU 2
 
-typedef struct
-{
-  unsigned char etatDuModule;  
-  unsigned char information;
-  unsigned char etatDuBouton;
+typedef struct {
+    unsigned char etatDuModule;  
+    unsigned char information;
+    unsigned char etatDuBouton;
 } INTERFACEB1;
 
 //Fonctions publiques:

@@ -22,16 +22,10 @@
 // pas de variables publiques
 
 //Definitions de fonctions publiques:
-void piloteIOT3_metLaSortieA(unsigned char Valeur)
-{
-  HAL_GPIO_WritePin(PILOTEIOT3_PORT, PILOTEIOT3_SORTIE, (GPIO_PinState)Valeur);  
+void piloteIOT3_metLaSortieA(unsigned char Valeur) {
+    HAL_GPIO_WritePin(PILOTEIOT3_PORT, PILOTEIOT3_SORTIE, (GPIO_PinState)Valeur);  
 }
 
-void piloteIOT3_initialise(void)
-{
-  HAL_GPIO_WritePin(PILOTEIOT3_PORT, PILOTEIOT3_SORTIE, GPIO_PIN_RESET);  
+void piloteIOT3_initialise(void) {
+    HAL_GPIO_WritePin(PILOTEIOT3_PORT, PILOTEIOT3_SORTIE, GPIO_PIN_RESET);  
 }
-
-
-
-

@@ -14,6 +14,7 @@ unsigned char dataIN[8];
 
 void processusRX_CAN(void) {
     static int counterRX = 0;
+
     counterRX++;
     if (processusCAN.information == INFO_DISPO)
         return;
@@ -53,6 +54,7 @@ void processusTX_CAN(void) {
         return;
     counterTX = 0;
     a = ~a;
+
     HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, (GPIO_PinState)(a>>7));
     CAN_Send(processusCAN.CallerIDOut, &processusCAN.dataOUT[0], 3);
     processusCAN.requete = REQUETE_TRAITE;

@@ -56,6 +56,8 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
+#define MESSAGE_SIZE 5
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -82,7 +84,6 @@ unsigned char TabOutput[16] = {'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0',
 unsigned char dataOUT[16] = {'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0',
                              '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'};
 unsigned int CallerID, CallerIDOut, Temp;
-unsigned char Cursor = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -97,13 +98,13 @@ static void MX_CAN1_Init(void);
 void main_initialiseAvantLeHAL(void);
 void main_initialiseApresLeHAL(void);
 unsigned char hex2ascii(unsigned char hex);
+unsigned char *buffer_hex2ascii(unsigned char *buffer, unsigned char buffer_size);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-struct CANInfo CAN_buffer;
-void main_initialiseAvantLeHAL(void)
-{
+struct service_CAN_buffer CAN_buffer;
+void main_initialiseAvantLeHAL(void) {
   piloteIOT1_initialise();
   piloteIOT2_initialise();
   piloteIOT3_initialise();
@@ -114,8 +115,7 @@ void main_initialiseAvantLeHAL(void)
   interfaceT4_initialise();
 }
 
-void main_initialiseApresLeHAL(void)
-{
+void main_initialiseApresLeHAL(void) {
   Init_interfaceCAN();
 }
 
@@ -128,7 +128,7 @@ void neFaitRien(void) {}
   */
 int main(void) {
   /* USER CODE BEGIN 1 */
-  char message[5] = {'A', 'l', 'l', 'o', '\0'};
+  unsigned char message[MESSAGE_SIZE] = {'A', 'l', 'l', 'o', '\0'};
   /* USER CODE END 1 */
 
 
@@ -181,11 +181,14 @@ int main(void) {
               Temp = TabOutput[7]<<4;
               Temp += TabOutput[8];
               dataOUT[2] = Temp;
+              Temp = TabOutput[9]<<4;
+              Temp += TabOutput[10];
+              dataOUT[3] = Temp;
               CAN_Send(CallerIDOut, dataOUT, 3);
               break;
       }
       #ifdef DEBUG
-          puts();
+          printf("\nSending CAN message: %s\n", TabOutput);
       #endif
     }
 
@@ -193,16 +196,18 @@ int main(void) {
       if (CAN_Read(dataIN, &CallerID) == 1) {
         switch (CallerID) {
           case ADDRESS_1:
-              CAN_buffer.commande.all = dataIN[0];
-              CAN_buffer.FE_tri.all = dataIN[1];
-              CAN_buffer.FE_pese.all = dataIN[2];
-              printf("\nReceived message from A: \n", hex2ascii(CAN_buffer));
+              CAN_buffer.byte[0] = dataIN[0];
+              CAN_buffer.byte[1] = dataIN[1];
+              CAN_buffer.byte[2] = dataIN[2];
+              CAN_buffer.byte[3] = dataIN[3];
+              printf("\nReceived message from ADDRESS_1: \n", buffer_hex2ascii(CAN_buffer.byte, MESSAGE_SIZE));
               break;
           case ADDRESS_2:
-              CAN_buffer.tri.all = dataIN[0];
-              CAN_buffer.FE_tri.all = dataIN[1];
-              CAN_buffer.FE_pese.all = dataIN[2];
-              printf("\nReceived message from B: \n", hex2ascii(CAN_buffer));
+              CAN_buffer.byte[0] = dataIN[0];
+              CAN_buffer.byte[1] = dataIN[1];
+              CAN_buffer.byte[2] = dataIN[2];
+              CAN_buffer.byte[3] = dataIN[3];
+              printf("\nReceived message from ADDRESS_2: \n", buffer_hex2ascii(CAN_buffer.byte, MESSAGE_SIZE));
               break;
         }
       }
@@ -219,8 +224,7 @@ int main(void) {
   * @brief System Clock Configuration
   * @retval None
   */
-void SystemClock_Config(void)
-{
+void SystemClock_Config(void) {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
@@ -239,9 +243,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+      Error_Handler();
   /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -252,9 +254,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-  {
-    Error_Handler();
-  }
+      Error_Handler();
 }
 
 /**
@@ -262,9 +262,7 @@ void SystemClock_Config(void)
   * @param None
   * @retval None
   */
-static void MX_CAN1_Init(void)
-{
-
+static void MX_CAN1_Init(void) {
   /* USER CODE BEGIN CAN1_Init 0 */
 
   /* USER CODE END CAN1_Init 0 */
@@ -285,13 +283,10 @@ static void MX_CAN1_Init(void)
   hcan1.Init.ReceiveFifoLocked = DISABLE;
   hcan1.Init.TransmitFifoPriority = DISABLE;
   if (HAL_CAN_Init(&hcan1) != HAL_OK)
-  {
-    Error_Handler();
-  }
+      Error_Handler();
   /* USER CODE BEGIN CAN1_Init 2 */
 
   /* USER CODE END CAN1_Init 2 */
-
 }
 
 /**
@@ -299,43 +294,36 @@ static void MX_CAN1_Init(void)
   * @param None
   * @retval None
   */
-static void MX_I2C1_Init(void)
-{
-
-  /* USER CODE BEGIN I2C1_Init 0 */
-
-  /* USER CODE END I2C1_Init 0 */
-
-  /* USER CODE BEGIN I2C1_Init 1 */
-
-  /* USER CODE END I2C1_Init 1 */
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 100000;
-  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C1_Init 2 */
-
-  /* USER CODE END I2C1_Init 2 */
-
-}
+//static void MX_I2C1_Init(void) {
+//  /* USER CODE BEGIN I2C1_Init 0 */
+//
+//  /* USER CODE END I2C1_Init 0 */
+//
+//  /* USER CODE BEGIN I2C1_Init 1 */
+//
+//  /* USER CODE END I2C1_Init 1 */
+//  hi2c1.Instance = I2C1;
+//  hi2c1.Init.ClockSpeed = 100000;
+//  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+//  hi2c1.Init.OwnAddress1 = 0;
+//  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+//  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+//  hi2c1.Init.OwnAddress2 = 0;
+//  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+//  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+//  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+//      Error_Handler();
+//  /* USER CODE BEGIN I2C1_Init 2 */
+//
+//  /* USER CODE END I2C1_Init 2 */
+//}
 
 /**
   * @brief TIM6 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_TIM6_Init(void)
-{
-
+static void MX_TIM6_Init(void) {
   /* USER CODE BEGIN TIM6_Init 0 */
 
   /* USER CODE END TIM6_Init 0 */
@@ -351,19 +339,14 @@ static void MX_TIM6_Init(void)
   htim6.Init.Period = 41999;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
-  {
-    Error_Handler();
-  }
+      Error_Handler();
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_ENABLE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+      Error_Handler();
   /* USER CODE BEGIN TIM6_Init 2 */
 
   /* USER CODE END TIM6_Init 2 */
-
 }
 
 /**
@@ -371,9 +354,7 @@ static void MX_TIM6_Init(void)
   * @param None
   * @retval None
   */
-static void MX_USART2_UART_Init(void)
-{
-
+static void MX_USART2_UART_Init(void) {
   /* USER CODE BEGIN USART2_Init 0 */
 
   /* USER CODE END USART2_Init 0 */
@@ -390,13 +371,10 @@ static void MX_USART2_UART_Init(void)
   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
   if (HAL_UART_Init(&huart2) != HAL_OK)
-  {
-    Error_Handler();
-  }
+      Error_Handler();
   /* USER CODE BEGIN USART2_Init 2 */
 
   /* USER CODE END USART2_Init 2 */
-
 }
 
 /**
@@ -404,8 +382,7 @@ static void MX_USART2_UART_Init(void)
   * @param None
   * @retval None
   */
-static void MX_GPIO_Init(void)
-{
+static void MX_GPIO_Init(void) {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
@@ -560,30 +537,30 @@ static void MX_GPIO_Init(void)
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
-
 }
 
 /* USER CODE BEGIN 4 */
 
-unsigned char hex2ascii(unsigned char hex)
-{
-  if (hex > 9) hex += 0x37;
-  else hex += 0x30;
-  return (hex);
+unsigned char hex2ascii(unsigned char hex) {
+    return hex + (hex > 9 ? 0x37 : 0x30);
 }
+
+unsigned char *buffer_hex2ascii(unsigned char *buffer, unsigned char buffer_size) {
+    for (unsigned char i = 0; i < buffer_size; i++)
+        buffer[i] = hex2ascii(buffer[i]);
+    return buffer;
+}
+
 /* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
-void Error_Handler(void)
-{
+void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  while(1)
-  {
-  }
+  while (1) {}
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -595,8 +572,7 @@ void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
-{
+void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

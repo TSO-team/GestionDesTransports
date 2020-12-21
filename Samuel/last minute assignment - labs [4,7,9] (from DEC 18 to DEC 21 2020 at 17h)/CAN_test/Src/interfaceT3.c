@@ -24,13 +24,13 @@
 
 //Definitions de fonctions publiques:
 void interfaceT3_allume(void) {
-  piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ALLUMER);
+    piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ALLUMER);
 }
 
 void interfaceT3_eteint(void) {
-  piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ETEINDRE);
+    piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ETEINDRE);
 }
 
 void interfaceT3_initialise(void) {
-  piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ETEINDRE);
+    piloteIOT3_metLaSortieA(INTERFACET3_VALEUR_POUR_ETEINDRE);
 }

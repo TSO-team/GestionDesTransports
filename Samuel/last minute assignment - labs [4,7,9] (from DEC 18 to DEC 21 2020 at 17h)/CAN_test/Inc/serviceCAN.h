@@ -1,15 +1,15 @@
 // Define this in main.c:
-//     struct CANInfo CAN_buffer;
+//     struct service_CAN_buffer CAN_buffer;
 
 #ifndef SERVICECANH
 #define SERVICECANH
  
 #define SERVICE_CAN_BUFFER_SIZE 16
 
-struct CANInfo {
+struct service_CAN_buffer {
     unsigned char byte[SERVICE_CAN_BUFFER_SIZE];
 };
 
-extern struct CANInfo CAN_buffer;
+extern struct service_CAN_buffer CAN_buffer;
 
 #endif
